@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct WeatherView: View {
-    @ObservedObject var viewModel = WeatherViewModel()
+    @ObservedObject var viewModel = WeatherViewModel(weatherService: WeatherService())
     
     var body: some View {
         NavigationView {

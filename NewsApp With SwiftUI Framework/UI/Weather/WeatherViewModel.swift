@@ -10,12 +10,16 @@ import SwiftUI
 import Combine
 
 final class WeatherViewModel: ObservableObject {
-    private let weatherService: WeatherServiceProtocol = WeatherService()
+    private let weatherService: WeatherServiceProtocol
     
     private var bag = Set<AnyCancellable>()
     
     @Published private (set) var weather: WeatherResponse?
     @Published private (set) var locationName: String = Constants.gettingYourLocationText
+
+    init(weatherService: WeatherServiceProtocol = WeatherService()) {
+        self.weatherService = weatherService
+    }
     
     func getCityName() {
         weatherService.getCityName { [weak self] result in
